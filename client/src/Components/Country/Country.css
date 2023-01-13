@@ -1,0 +1,45 @@
+.main-cointainer { 
+   
+    background-position: center center;
+} 
+.body {
+   color: rgb(209, 86, 127);
+   background-image: url("../../images/background.jpeg");
+   margin-top: 0px;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.backbtn {
+    font-size: 17px;
+    border-color: palevioletred;
+    border-radius: 6px solid;
+    color:white;
+    background-color: palevioletred;
+    width: 15 px;
+    height: 18 px;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.backbtn:hover {
+    background-color: white;
+    color: palevioletred;
+}
+.nav {
+    background-color: peachpuff;
+}
+
+.flagimage {
+    border-radius: 22px;
+    width: 34%;
+}
+.futherinfo {
+
+}
+
+.turisticdetail {
+
+}
+.furtherinfoh1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: palevioletred;
+}

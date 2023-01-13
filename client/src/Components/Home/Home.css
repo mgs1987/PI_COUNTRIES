@@ -1,0 +1,15 @@
+.main-container {
+    background-image: url("../../images/background.jpeg");
+    background-position: center center;
+}
+
+.create-activity {
+    display:grid;
+    align-items: center;
+
+}
+
+.searchbar {
+    display: flex;
+    align-items: flex-end;
+}
