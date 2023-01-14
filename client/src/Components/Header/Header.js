@@ -49,10 +49,12 @@ function Header({ setCurrentPage}) {
       <h1 className="h1"> Countries in the World </h1>
       <div className="menu">
         <div className="linkbutton">
-            <Link to="/activities" className="create-act">Create Activity</Link>
+            
+            <button className="createbtn"><Link to="/activities" className="create-act">Create Activity</Link></button>
+            <button onClick={(e)=>handleReset(e)}className="btn"> Reset Filters / Orders</button>
         </div>
         <div className="dropdown">
-          <button onClick={(e)=>handleReset(e)}className="dropbtn"> Reset Filters / Orders</button>
+          
           <button className="dropbtn">Filter</button>
           <div className="dropdown-content">
             <ul className="continent-list">
@@ -67,6 +69,9 @@ function Header({ setCurrentPage}) {
                     <option value="Antarctica">Antarctica</option>
                </select>
               <li><Link to="#" className="create-act">Turistic Activities</Link></li>
+                 <select>
+                    <option value="only">All activities</option>
+                 </select>
                  
             </ul>
           </div>

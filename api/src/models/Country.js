@@ -13,8 +13,7 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.STRING(3),
       allowNull: false,
-      primaryKey: true,
-      unique: true
+      primaryKey: true
     },
     flag_image: {
       type: DataTypes.STRING(255),
@@ -29,7 +28,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     subregion: {
-      type: DataTypes.STRING(50)
+      type: DataTypes.STRING
     },
     area : {
       type: DataTypes.INTEGER

@@ -93,7 +93,4 @@ router.get("/countries", async (req, res, next) => {
 
  router.post("/activities", agregarActividad.addActivity);
 
-
-
-
 module.exports = router;

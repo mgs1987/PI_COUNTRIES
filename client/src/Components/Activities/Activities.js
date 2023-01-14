@@ -18,15 +18,14 @@ function Activities() {
 
 
   const [input, setInput]= useState({
-    countries:[],
-     name:"",
-     difficulty:"",
-     duration:"",
-     season:"", 
-     errors: {
+      countries:[],
       name:"",
-      difficulty:"",
-      duration:""
+      difficulty: 0,
+      duration: 0,
+      season:"", 
+      errors: {
+        name:"",
+        duration:""
      }
   })
   
@@ -40,6 +39,12 @@ function handleChange(e){
   });
 }
 
+function handleAddCountry(e){
+  setInput({
+    ...input,
+    countries:[...input.countries, e.target.value]
+  })
+}
 
 function handleSubmit(e){
   e.preventDefault();
@@ -50,10 +55,6 @@ function handleSubmit(e){
     case "name":
       var nameValidate = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
       errors.name = nameValidate.test(value) && value.length < 3 ? "Activity name must be letters and have as minimum 3 characters" : "";
-      break;
-    case "difficulty":
-        var difficultyValidate=/^[0-5]+$/;
-        errors.difficulty = value.length < 2 && difficultyValidate.test(value) ? "Difficulty must be a number between 0 and 5": "";
       break;
     case "duration":
         var durationValidate =/^[0-9]+$/;
@@ -73,7 +74,7 @@ function handleSubmit(e){
       <h2 className="h2"> Want to ADD any activity? </h2>
       <form onSubmit={(e)=>handleSubmit(e)}>
       <div className="select">
-        <select name="countries" defaultValue={"DEFAULT"}className="select-countries" onChange={(e)=>handleChange(e)} multiple >
+        <select name="countries" defaultValue={"DEFAULT"}className="select-countries" onChange={(e)=>handleAddCountry(e)} multiple >
           <option value="DEFAULT"> Select countries : </option>
            {allCountries.map((pais)=> (
           <option key={pais.id} value={pais.name}> {pais.name}</option>))} 
@@ -91,14 +92,14 @@ function handleSubmit(e){
         ></input>
         <br></br>
         <h4 className="h4"> Difficulty </h4>
-        <input
-          type="number"
-          name="difficulty"
-          placeholder="From 0 to 5"
-          onChange={(e)=>handleChange(e)}
-          className="input"
-          required
-        ></input>
+        <select onChange={(e)=>handleChange(e)}>
+          <option value="0">Select number from 1 to 5</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
         <br></br>
         <h4 className="h4"> Duration </h4>
         <input
