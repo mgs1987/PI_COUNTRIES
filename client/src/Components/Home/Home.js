@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 //import { Link } from "react-router-dom";
 import Pages from "../Pages";
 
-import { getCountries } from "../../Redux/actions/index";
+import { getCountries, getActivities } from "../../Redux/actions/index";
 
 function Home() {
   const dispatch = useDispatch(); //lo necesitamos para despachar actions
@@ -17,10 +17,10 @@ function Home() {
   // will not re-render.
 
   const allCountries = useSelector((state) => state.allCountries); // este hook redux permite extraer data del estado del redux store
-
   
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [countriesPerPage, setCountriesPerPage] = useState(currentPage !== 1? 10:9);
+  const [countriesPerPage, setCountriesPerPage] = useState(10);
   
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
@@ -37,8 +37,9 @@ function Home() {
 // con este hook le estamos diciendo al componente que tiene q hacer algo dsp de renderizarse react 
 //recordara la funcion que le hemos pasado y la llamara luego para actualizar el dom
  
-useEffect(() => { //equivale a montaje,actualiz., y desmontaje(ciclo de vida)
-    dispatch(getCountries()); //cada vez q nuestro componente se render x cambios del estado o props
+useEffect(() => { 
+    dispatch(getCountries());
+    dispatch(getActivities()) //cada vez q nuestro componente se render x cambios del estado o props
   }, [dispatch]);
 
  
@@ -57,6 +58,7 @@ useEffect(() => { //equivale a montaje,actualiz., y desmontaje(ciclo de vida)
               name={pais.name}
               continent={pais.continent}
               flag_image={pais.flag_image}
+             
             />
           );
         })}

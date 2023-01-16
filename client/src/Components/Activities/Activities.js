@@ -5,7 +5,6 @@ import { addActivity, getCountries } from "../../Redux/actions"
 import { Link } from "react-router-dom";
 
 
-
 function Activities() {
   
   const dispatch= useDispatch()
@@ -20,7 +19,7 @@ function Activities() {
   const [input, setInput]= useState({
       countries:[],
       name:"",
-      difficulty: 0,
+      difficulty: "",
       duration: 0,
       season:"", 
       errors: {
@@ -31,11 +30,9 @@ function Activities() {
   
 function handleChange(e){
   e.preventDefault();
-  const { value, name }= e.target;
-  
   setInput({
    ...input,
-   [name]: value
+   [e.target.name]: e.target.value
   });
 }
 
@@ -46,10 +43,27 @@ function handleAddCountry(e){
   })
 }
 
+function handleDifficulty(e){
+   e.preventDefault();
+   setInput({
+    ...input,
+    difficulty : e.target.value
+   })
+}
+function handleSeason(e){
+  e.preventDefault();
+  setInput({
+    ...input,
+    season: e.target.value
+  })
+}
+
 function handleSubmit(e){
   e.preventDefault();
+  
   const { value, name }= e.target
   let errors = useState.errors;
+   //console.log(input)
 
   switch(name){
     case "name":
@@ -62,20 +76,28 @@ function handleSubmit(e){
       break;
         default:
           break;
-  }
-
-  //alert("A form was submitted ")
+  };
+  
   dispatch(addActivity(input))
+  setInput({
+    countries:"",
+    name:"",
+    difficulty:"",
+    duration:"",
+    season:""
+  });
 }
 
   return (
     <div className="body">
+      <br></br>
       <Link to="/home" className="backhome"> Back to Home </Link>
       <h2 className="h2"> Want to ADD any activity? </h2>
       <form onSubmit={(e)=>handleSubmit(e)}>
       <div className="select">
-        <select name="countries" defaultValue={"DEFAULT"}className="select-countries" onChange={(e)=>handleAddCountry(e)} multiple >
-          <option value="DEFAULT"> Select countries : </option>
+        <h4 className="h4">  Select countries :</h4>
+        <select name="countries" className="select-countries" onChange={(e)=>handleAddCountry(e)} multiple >
+
            {allCountries.map((pais)=> (
           <option key={pais.id} value={pais.name}> {pais.name}</option>))} 
         </select>
@@ -84,21 +106,21 @@ function handleSubmit(e){
         <h4 className="h4"> Activity name </h4>
         <input
           type="text"
-          name="act-name"
+          name="name"
           placeholder= "Write here"
           onChange={(e)=>handleChange(e)}
           className="input"
           required
         ></input>
         <br></br>
-        <h4 className="h4"> Difficulty </h4>
-        <select onChange={(e)=>handleChange(e)}>
-          <option value="0">Select number from 1 to 5</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+        <h4 htmlFor="difficulty" className="h4"> Difficulty </h4>
+        <select className="select-season"onChange={(e)=>handleDifficulty(e)}>
+          <option key="0" value="0">Select number from 1 to 5</option>
+          <option key="1"value="1">1- Begginer</option>
+          <option key="2"value="2">2-Low</option>
+          <option key="3"value="3">3-Medium</option>
+          <option key="4"value="4">4-High</option>
+          <option key="5"value="5">5-Professional</option>
         </select>
         <br></br>
         <h4 className="h4"> Duration </h4>
@@ -112,21 +134,20 @@ function handleSubmit(e){
         ></input>
         <br></br>
         <h4 className="h4"> Season </h4>
-        <select value={useState.season} onChange={(e)=>handleChange(e)}
+        <select value={useState.season} onChange={(e)=>handleSeason(e)}
         className="select-season">
-          <option value="value1"> Winter </option>
-          <option value="value2"> Spring </option>
-          <option value="value3"> Autumn </option>
-          <option value="value4"> Summer </option>
+          <option value="0">Select season</option>
+          <option value="Winter"> Winter </option>
+          <option value="Spring"> Spring </option>
+          <option value="Autumn"> Autumn </option>
+          <option value="Summer"> Summer </option>
         </select>
         <br></br>
         <br></br>
         <br></br>
-        <button type="submit" className="buttonAdd">
-          DO IT
-        </button>
+        <button type="submit" className="buttonAdd">Add Turistic Activity</button>
+        
       </form>
-      {/* <Footer/> */}
     </div>
   );
 }

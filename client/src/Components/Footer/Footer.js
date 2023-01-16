@@ -7,7 +7,7 @@ function Footer() {
   return (
     <div className='footer'> 
     <br></br>
-    <h6>If you like my work, contact me</h6>
+    <h5> First Individual Proyect- Countries in the World </h5>
     <br></br>
     </div>
   )

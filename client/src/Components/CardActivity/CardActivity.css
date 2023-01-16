@@ -1,0 +1,29 @@
+
+.cardact {
+    border: 3px solid peachpuff;
+    border-radius: 3rem;
+    margin: 1rem;
+    width: 20rem;
+    padding: 1rem;
+    display: inline-grid;
+    min-height: 340px;
+    background-color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: palevioletred;
+    font-size: x-small;
+    
+}
+
+.subtititle1 {
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+ 
+}
+
+.subtitles {
+    text-decoration: underline;
+    color: #de8739;
+
+}

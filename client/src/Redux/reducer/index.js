@@ -5,36 +5,33 @@ import {
   ORDER_ALPHABETIC,
   ORDER_POPULATION,
   ADD_ACTIVITY, 
-  GET_COUNTRY_DETAIL_BY_ID
+  GET_COUNTRY_DETAIL_BY_ID,
+  GET_ACTIVITIES,
+  FILTER_ACTIVITIES_BY_SEASON,
+  GET_ACTIVITIES_FILTERED,
+ 
 } from "../actions/index";
 
 
 //INICIALIZACION -- Estado global inicial
 
 const initialState = {
-  countries: [],
+  countries:[],
   allCountries: [],
   countryDetail: {},
-  activities: [] 
+  activities: [], 
+  activitiesFiltered:[]
 };
 
-// delete activity  EXTRA
-
-//hace el cambio en el store //EL REDUCER REECIBE EL ESTADO
 const rootReducer = (state = initialState, action) => {
-  //el reducer hace el cambio en el store, es una funcion: que me esta pidiendo la accion?
- 
-
-  switch (action.type) //funcion pura// siempre devuelve un nuevo estado
-   {
+  switch (action.type) {
     case GET_COUNTRIES:
       return {
         ...state,
         countries: action.payload,
         allCountries: action.payload
       };
-    case GET_COUNTRY_BY_NAME:
-         
+    case GET_COUNTRY_BY_NAME:  
       return {
         ...state,
         allCountries: action.payload
@@ -68,7 +65,7 @@ const rootReducer = (state = initialState, action) => {
           if(action.payload === "Descending order"){
             sortedPopulation = [...state.allCountries.sort((a,b)=> b.population - a.population)]
           }
-            return {
+          return {
               ...state,
               allCountries: sortedPopulation,
             }
@@ -82,7 +79,37 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             countryDetail: action.payload
           }
-       default: return state
+       case GET_ACTIVITIES:
+        
+        return {
+          ...state,
+          activities: action.payload
+        }
+      case FILTER_ACTIVITIES_BY_SEASON:
+         const actFilt= state.activities.filter((e)=>e.season === action.payload )
+        return {
+          ...state,
+          activities: actFilt
+        }
+      case GET_ACTIVITIES_FILTERED:
+        
+        console.log("ACA ESTA LA CACA", action.payload)
+        console.log("la estrella", state.activities)
+
+      const filtAct= state.activities.filter(e=>e.countries.includes(action.payload))
+      console.log("aca esta the reañ caca ", filtAct)
+      //   // const filteredAct= action.payload === "All" ? state.countries :
+      //   // caca.filter((e)=>e.activities.map(el => el.countries.includes(action.payload)))
+
+      //     //const filt= state.activities.map((e)=> e.name).includes(action.payload)
+      //     //const actFiltered= state.activities.filter(e=> e.countries).includes(action.payload)
+          return {
+            ...state,
+             activitiesFiltered: filtAct
+          }
+    
+       default: return state;
     }
 };
+
 export default rootReducer;

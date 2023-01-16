@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Header.css";
-import { getCountryByName, filterByContinent, orderAlphabetic, orderPopulation, getCountries } from "../../Redux/actions/index";
+import { getCountryByName, filterByContinent, orderAlphabetic, orderPopulation, getCountries,filterCountriesSeasonActivities , getActivities } from "../../Redux/actions/index";
 import { Link } from "react-router-dom";
 
-function Header({ setCurrentPage}) {
+function Header({ setCurrentPage }) {
   
   const [select, setSelect]=useState("")
   const [search, setSearch]=useState("")
@@ -44,14 +44,21 @@ function Header({ setCurrentPage}) {
     e.preventDefault();
     dispatch(getCountries())
   }
+
+  // function handleActivities(e){
+  //   e.preventDefault();
+  //   setSelect(e.target.value)
+  //   dispatch(filterCountriesSeasonActivities())
+  //onChange={(e)=> handleActivities(e)}
+  // }
   return (
     <div className="search-bar">
       <h1 className="h1"> Countries in the World </h1>
       <div className="menu">
         <div className="linkbutton">
             
-            <button className="createbtn"><Link to="/activities" className="create-act">Create Activity</Link></button>
-            <button onClick={(e)=>handleReset(e)}className="btn"> Reset Filters / Orders</button>
+            <button className="create-act"><Link to="/activities" className="create-act">Create Activity</Link></button>
+            <button onClick={(e)=>handleReset(e)} className="create-act1"> Reset Filters / Orders</button>
         </div>
         <div className="dropdown">
           
@@ -68,9 +75,12 @@ function Header({ setCurrentPage}) {
                     <option value="Europe">Europe</option>
                     <option value="Antarctica">Antarctica</option>
                </select>
-              <li><Link to="#" className="create-act">Turistic Activities</Link></li>
+              <li><Link to="#" className="create-act">Turistic Activities per Countries</Link></li>
                  <select>
-                    <option value="only">All activities</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Autumn">Autumn</option>
                  </select>
                  
             </ul>

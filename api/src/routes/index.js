@@ -7,9 +7,7 @@ const { dataBFiller } = require("../controllers/dbFiller");
 const { getAllCountries } = require("../controllers/getCountries");
 const agregarActividad = require("../controllers/addActivity");
 const { Country }=require("../db");
-const { Activity }= require("../db");
-
-
+const { Activities }= require("../db");
 
 const router = Router();
 
@@ -17,7 +15,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-//------GET/countries y GET/countries?name="..."------
+//-----------------GET/countries y GET/countries?name="..."--------------------------//
 
 router.get("/countries", async (req, res, next) => {
     const { name } = req.query;
@@ -40,7 +38,7 @@ router.get("/countries", async (req, res, next) => {
     } 
     const countries= await Country.findAll({
         includes:{
-            model: Activity,
+            model: Activities,
         }
     })
     res.status(200).send(countries)
@@ -50,11 +48,7 @@ router.get("/countries", async (req, res, next) => {
 });
 
 
-
-
-
-
-//------------ GET /countries/{idPais}---------------:
+//-------------------- GET /countries/{idPais}--------------------------:
 
 
  router.get("/countries/:id", async(req,res) =>{
@@ -68,7 +62,7 @@ router.get("/countries", async (req, res, next) => {
             const idMayus= id.toUpperCase()
             const idCountry= await Country.findByPk(idMayus,{
                 includes: {
-                    model: Activity
+                    model: Activities,
                 }
             })
             //console.log("HOLA SOY COUNTRY", idCountry)
@@ -81,16 +75,32 @@ router.get("/countries", async (req, res, next) => {
 
      } catch(err){
         console.log(err)}
- })
+ });
 
-//INTENTAR CREAR OTRAS RUTAS!!!
-
-//----------------------POST /activities-----------------------------
+//----------------------POST /activities---------------------------------//
 // // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
 // // Crea una actividad turística en la base de datos,
 
-// //OJO ESTA PARTE!!!!! relacionada con los países correspondientes
+router.post("/activities", agregarActividad.addActivity);
 
- router.post("/activities", agregarActividad.addActivity);
+
+//------------------GET /activities --------------------------------------//
+ 
+router.get("/activities", async (req, res, next) => {
+
+    try {
+      const newActivity = await Activities.findAll({
+        include: [
+          {
+            model: Country,
+            through: "Country_Activities",
+          },
+        ],
+      });
+      res.send(newActivity);
+    } catch (error) {    // Agarra los errores sequelize, "next" pasa al siguiente middleware.
+      next(error);
+    }
+  });
 
 module.exports = router;

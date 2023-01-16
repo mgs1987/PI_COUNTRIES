@@ -5,9 +5,7 @@ async function addActivity(req,res,next){
 
         try{
         const { name, difficulty, duration, season, countries }=req.body
-
-        console.log(typeof countries)
-
+       
         if(!name || !difficulty || !duration || !season || !countries){
             return res.status(400).json({msg: "Incomplete Form"})
         }
