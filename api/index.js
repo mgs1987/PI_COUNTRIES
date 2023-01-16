@@ -23,13 +23,14 @@ const { conn } = require('./src/db.js');
 const dbFiller= require("../api/src/controllers/dbFiller")
 var isExecuted= false;
 
-if(!isExecuted){
-  isExecuted=true;
-  dbFiller.dataBFiller();
-}
+
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
+  if(!isExecuted){
+    isExecuted=true;
+    dbFiller.dataBFiller();
+  }
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });

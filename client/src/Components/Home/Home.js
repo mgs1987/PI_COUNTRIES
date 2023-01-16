@@ -4,24 +4,18 @@ import Card from "../Card/Card";
 import "./Home.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-//import { Link } from "react-router-dom";
 import Pages from "../Pages";
 
 import { getCountries, getActivities } from "../../Redux/actions/index";
 
 function Home() {
-  const dispatch = useDispatch(); //lo necesitamos para despachar actions
+  const dispatch = useDispatch();
 
-  //When an action is dispatched, useSelector() will do a reference comparison of the previous selector result value and the
-  // current result value. If they are different, the component will be forced to re-render. If they are the same, the component
-  // will not re-render.
-
-  const allCountries = useSelector((state) => state.allCountries); // este hook redux permite extraer data del estado del redux store
-  
+  const allCountries = useSelector((state) => state.allCountries);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [countriesPerPage, setCountriesPerPage] = useState(10);
-  
+  const [countriesPerPage, setCountriesPerPage] = useState(9);
+
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
 
@@ -32,33 +26,31 @@ function Home() {
 
   const page = (number) => {
     setCurrentPage(number);
+    if (number === 1) {
+      setCountriesPerPage(9);
+    } else {
+      setCountriesPerPage(10);
+    }
   };
 
-// con este hook le estamos diciendo al componente que tiene q hacer algo dsp de renderizarse react 
-//recordara la funcion que le hemos pasado y la llamara luego para actualizar el dom
- 
-useEffect(() => { 
+  useEffect(() => {
     dispatch(getCountries());
-    dispatch(getActivities()) //cada vez q nuestro componente se render x cambios del estado o props
+    dispatch(getActivities());
   }, [dispatch]);
 
- 
   return (
     <div className="main-container">
-      <Header
-      setCurrentPage={setCurrentPage} />
+      <Header setCurrentPage={setCurrentPage} />
       <br></br>
       <br></br>
       {currentCountries &&
         currentCountries.map((pais) => {
-          //console.log(pais.id)
           return (
             <Card
               id={pais.id}
               name={pais.name}
               continent={pais.continent}
               flag_image={pais.flag_image}
-             
             />
           );
         })}
@@ -74,4 +66,3 @@ useEffect(() => {
 }
 
 export default Home;
-

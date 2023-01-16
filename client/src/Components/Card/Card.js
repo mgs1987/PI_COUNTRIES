@@ -5,10 +5,8 @@ import "./CountryCard.css";
 
 
 const Card = ({id, name, continent, flag_image}) =>{
-    console.log("aca esta el ID ", name)
     return (
-        
-    <Link to={`/${id}`} className="card">
+      <Link to={`/${id}`} className="card">
         
          <img className="country-flag" src={flag_image} alt={name} key='key'/>
          <h2 className="h2-name">{name}</h2>

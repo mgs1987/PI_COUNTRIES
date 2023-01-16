@@ -65,7 +65,6 @@ router.get("/countries", async (req, res, next) => {
                     model: Activities,
                 }
             })
-            //console.log("HOLA SOY COUNTRY", idCountry)
 
             if(!idCountry){
                 return res.status(404).send("No country found with that id")
@@ -83,7 +82,6 @@ router.get("/countries", async (req, res, next) => {
 
 router.post("/activities", agregarActividad.addActivity);
 
-
 //------------------GET /activities --------------------------------------//
  
 router.get("/activities", async (req, res, next) => {
@@ -97,7 +95,7 @@ router.get("/activities", async (req, res, next) => {
           },
         ],
       });
-      res.send(newActivity);
+      res.status(200).json(newActivity);
     } catch (error) {    // Agarra los errores sequelize, "next" pasa al siguiente middleware.
       next(error);
     }

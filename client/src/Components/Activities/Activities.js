@@ -68,11 +68,15 @@ function handleSubmit(e){
   switch(name){
     case "name":
       var nameValidate = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
-      errors.name = nameValidate.test(value) && value.length < 3 ? "Activity name must be letters and have as minimum 3 characters" : "";
+      errors.name = nameValidate.test(value) && value.length < 3
+       ? "Activity name must be letters and have as minimum 3 characters"
+       : "";
       break;
     case "duration":
         var durationValidate =/^[0-9]+$/;
-        errors.difficulty = value.length < 4 && durationValidate.test(value) ? "Duration must be a number" : "";
+        errors.difficulty = value.length < 4 && durationValidate.test(value) 
+        ? "Duration must be a number" 
+        : "";
       break;
         default:
           break;
@@ -96,10 +100,16 @@ function handleSubmit(e){
       <form onSubmit={(e)=>handleSubmit(e)}>
       <div className="select">
         <h4 className="h4">  Select countries :</h4>
-        <select name="countries" className="select-countries" onChange={(e)=>handleAddCountry(e)} multiple >
+        <select 
+        name="countries" 
+        className="select-countries" 
+        onChange={(e)=>handleAddCountry(e)} 
+        multiple >
 
            {allCountries.map((pais)=> (
-          <option key={pais.id} value={pais.name}> {pais.name}</option>))} 
+          <option key={pais.id} value={pais.name}>
+             {pais.name}
+             </option>))} 
         </select>
       </div>
       <br></br>
@@ -110,17 +120,32 @@ function handleSubmit(e){
           placeholder= "Write here"
           onChange={(e)=>handleChange(e)}
           className="input"
+          value={input.value}
           required
         ></input>
         <br></br>
-        <h4 htmlFor="difficulty" className="h4"> Difficulty </h4>
+        <h4 htmlFor="difficulty" className="h4">
+           Difficulty
+            </h4>
         <select className="select-season"onChange={(e)=>handleDifficulty(e)}>
-          <option key="0" value="0">Select number from 1 to 5</option>
-          <option key="1"value="1">1- Begginer</option>
-          <option key="2"value="2">2-Low</option>
-          <option key="3"value="3">3-Medium</option>
-          <option key="4"value="4">4-High</option>
-          <option key="5"value="5">5-Professional</option>
+          <option key="0" value="0">
+            Select number from 1 to 5
+            </option>
+          <option key="1"value="1">
+            1- Begginer
+          </option>
+          <option key="2"value="2">
+            2-Low
+            </option>
+          <option key="3"value="3">
+            3-Medium
+            </option>
+          <option key="4"value="4">
+            4-High
+            </option>
+          <option key="5"value="5">
+            5-Professional
+            </option>
         </select>
         <br></br>
         <h4 className="h4"> Duration </h4>
@@ -130,12 +155,15 @@ function handleSubmit(e){
           placeholder="Quantity of minutes..."
           onChange={(e)=>handleChange(e)}
           className="input"
+          value={input.value}
           required
         ></input>
         <br></br>
         <h4 className="h4"> Season </h4>
-        <select value={useState.season} onChange={(e)=>handleSeason(e)}
-        className="select-season">
+        <select value={useState.season} 
+        onChange={(e)=>handleSeason(e)}
+        className="select-season"
+        >
           <option value="0">Select season</option>
           <option value="Winter"> Winter </option>
           <option value="Spring"> Spring </option>
@@ -145,7 +173,9 @@ function handleSubmit(e){
         <br></br>
         <br></br>
         <br></br>
-        <button type="submit" className="buttonAdd">Add Turistic Activity</button>
+        <button type="submit" className="buttonAdd">
+          Add Turistic Activity
+          </button>
         
       </form>
     </div>
