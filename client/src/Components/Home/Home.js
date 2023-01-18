@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 import "./Home.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Pages from "../Pages";
+import Pages from "../../Pages/Pages.js";
 
 import { getCountries, getActivities } from "../../Redux/actions/index";
 
@@ -55,10 +55,11 @@ function Home() {
           );
         })}
       <Pages
-        allCountries={allCountries.length}
-        countriesPerPage={countriesPerPage}
         page={page}
+        setCountriesPerPage={setCountriesPerPage}
+        countriesPerPage={countriesPerPage}
         currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
       <Footer />
     </div>

@@ -56,7 +56,7 @@ export function getCountryDetailById(id) {
 }
 
 export function filterByContinent(payload) {
-  return async function (dispatch) {
+  return function (dispatch) {
     try {
       dispatch({ type: FILTER_CONTINENT, payload });
     } catch (err) {
@@ -72,7 +72,7 @@ export function filterBySeason(payload) {
 }
 
 export function orderAlphabetic(payload) {
-  return async function (dispatch) {
+  return function (dispatch) {
     try {
       dispatch({ type: ORDER_ALPHABETIC, payload });
     } catch (err) {
@@ -82,7 +82,7 @@ export function orderAlphabetic(payload) {
 }
 
 export function orderPopulation(payload) {
-  return async function (dispatch) {
+  return function (dispatch) {
     try {
       dispatch({ type: ORDER_POPULATION, payload });
     } catch (err) {
@@ -93,7 +93,7 @@ export function orderPopulation(payload) {
 
 export function addActivity(data) {
   return async function (dispatch) {
-    return axios
+    return await axios
       .post(GET_ALL_ACTIVITIES, data)
       .then((response) => response.data)
       .then((response) => {
@@ -115,7 +115,7 @@ export function getActivities() {
 }
 
 export function filterActivitiesBySeason(payload) {
-  return async function (dispatch) {
+  return function (dispatch) {
     try {
       dispatch({ type: FILTER_ACTIVITIES_BY_SEASON, payload });
     } catch (err) {
@@ -125,7 +125,7 @@ export function filterActivitiesBySeason(payload) {
 }
 
 export function getActivitiesFiltered(payload) {
-  return async function (dispatch) {
+  return function (dispatch) {
     try {
       dispatch({ type: GET_ACTIVITIES_FILTERED, payload });
     } catch (err) {

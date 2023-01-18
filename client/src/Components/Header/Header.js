@@ -72,11 +72,9 @@ function Header({ setCurrentPage }) {
           <button className="dropbtn">Filter</button>
           <div className="dropdown-content">
             <ul className="continent-list">
-              <li>
-                <Link to="#" className="create-act">
+              <li className="create-act">
                   Continent
-                </Link>
-              </li>
+                </li>
               <select
                 onChange={(e) => handleFilterContinent(e)}
                 className="continent-detail"
@@ -89,12 +87,11 @@ function Header({ setCurrentPage }) {
                 <option value="Europe">Europe</option>
                 <option value="Antarctica">Antarctica</option>
               </select>
-              <li>
-                <Link to="#" className="create-act">
+              <li className="create-act">
                   Turistic Activities per Countries
-                </Link>
               </li>
-              <select onChange={(e) => handleFilterBySeason(e)}>
+              
+              <select className="secondselect"onChange={(e) => handleFilterBySeason(e)}>
                 <option value="Winter">Winter</option>
                 <option value="Spring">Spring</option>
                 <option value="Summer">Summer</option>
