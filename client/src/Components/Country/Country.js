@@ -17,8 +17,8 @@ function Country(props) {
 
   useEffect(() => {
     dispatch(getCountryDetailById(id));
-    dispatch(getActivitiesFiltered(country.name));
-  }, [dispatch, id, country.name]);
+    dispatch(getActivitiesFiltered(id));
+  }, [dispatch, id]);
 
   return (
     <div className="main-cointainer">

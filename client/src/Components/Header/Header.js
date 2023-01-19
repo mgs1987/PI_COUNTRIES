@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 function Header({ setCurrentPage }) {
   const [select, setSelect] = useState("");
   const [search, setSearch] = useState("");
-  const [order, setOrder] = useState("");
+  
 
   const dispatch = useDispatch();
 
@@ -30,19 +30,21 @@ function Header({ setCurrentPage }) {
   function handleFilterContinent(e) {
     e.preventDefault();
     setSelect(e.target.value);
+    if(e.target.value !== ""){
     dispatch(filterByContinent(e.target.value));
-  }
-
+   }
+  };
   function handleOrderAlphabetic(e) {
     e.preventDefault();
-    setOrder(e.target.value);
-    dispatch(orderAlphabetic(order));
-  }
+    if(e.target.value !== ""){
+    dispatch(orderAlphabetic(e.target.value));
+  }}
 
   function handleOrderPopulation(e) {
     e.preventDefault();
+    if(e.target.value !== ""){
     dispatch(orderPopulation(e.target.value));
-  }
+  }}
 
   function handleReset(e) {
     e.preventDefault();
@@ -50,9 +52,10 @@ function Header({ setCurrentPage }) {
   }
 
   function handleFilterBySeason(e) {
+    if(e.target.value !== ""){
     dispatch(filterBySeason(e.target.value));
   }
-
+  }
   return (
     <div className="search-bar">
       <h1 className="h1"> Countries in the World </h1>
@@ -79,6 +82,7 @@ function Header({ setCurrentPage }) {
                 onChange={(e) => handleFilterContinent(e)}
                 className="continent-detail"
               >
+                <option value=""></option>
                 <option value="North America">North America</option>
                 <option value="South America">South America</option>
                 <option value="Asia">Asia</option>
@@ -88,10 +92,11 @@ function Header({ setCurrentPage }) {
                 <option value="Antarctica">Antarctica</option>
               </select>
               <li className="create-act">
-                  Turistic Activities per Countries
+                  Turistic Activities per Season
               </li>
               
               <select className="secondselect"onChange={(e) => handleFilterBySeason(e)}>
+              <option value=""></option>
                 <option value="Winter">Winter</option>
                 <option value="Spring">Spring</option>
                 <option value="Summer">Summer</option>
@@ -106,11 +111,17 @@ function Header({ setCurrentPage }) {
             <ul className="continent-list">
               <li className="create-act">Alphabetic</li>
               <select onChange={(e) => handleOrderAlphabetic(e)}>
-                <option className="select-continent">A-Z</option>
-                <option className="select-continent">Z-A</option>
-              </select>
+              <option></option>
+                <option className="select-continent" value={"A-Z"}>
+                  A-Z
+                </option>
+                <option className="select-continent" value={"Z-A"}>
+                  Z-A
+                </option>
+                </select>
               <li className="create-act">Population</li>
               <select onChange={(e) => handleOrderPopulation(e)}>
+              <option></option>
                 <option value="Descending order"> Descending order </option>
                 <option value="Ascending order"> Ascending order</option>
               </select>

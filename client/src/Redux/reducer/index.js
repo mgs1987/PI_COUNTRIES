@@ -43,22 +43,22 @@ const rootReducer = (state = initialState, action) => {
         allCountries: continentFilter,
       };
 
-    case ORDER_ALPHABETIC:
-      let sortedCountries = [];
-      if (action.payload === "Z-A") {
-        sortedCountries = [
-          ...state.countries.sort((a, b) => a.name.localeCompare(b.name)),
-        ];
-      }
-      if (action.payload === "A-Z") {
-        sortedCountries = [
-          ...state.countries.sort((a, b) => b.name.localeCompare(a.name)),
-        ];
-      }
-      return {
-        ...state,
-        allCountries: sortedCountries,
-      };
+      case ORDER_ALPHABETIC:
+        let sortedCountries = [];
+        if (action.payload === "A-Z") {
+          sortedCountries = [
+            ...state.allCountries.sort((a, b) => a.name.localeCompare(b.name)),
+          ];
+        }
+        if (action.payload === "Z-A") {
+          sortedCountries = [
+            ...state.allCountries.sort((a, b) => b.name.localeCompare(a.name)),
+          ];
+        }
+        return {
+          ...state,
+          allCountries: sortedCountries,
+        };
     case ORDER_POPULATION:
       let sortedPopulation = [];
       if (action.payload === "Ascending order") {
@@ -99,28 +99,39 @@ const rootReducer = (state = initialState, action) => {
         activities: actFilt,
       };
     case GET_ACTIVITIES_FILTERED:
-      let actFil = state.activities.filter(
-        (act) => act.Countries[0].name === action.payload
-      );
+      let actFil = state.activities.filter((activity) => {
+        return activity.Countries.some(
+          (country) => country.id === action.payload
+        );
+      });
+
       return {
         ...state,
         activitiesFiltered: actFil,
       };
 
-    case FILTER_COUNTRIES_BY_SEASON:
-      let actSeason = state.activities.filter(
-        (act) => act.season === action.payload
-      );
-      let actSeaCoun = actSeason
-        .map((act) => act.Countries)
-        .map((e) => e[0].name);
-      let countriesFilterSeason = state.countries.filter((c) =>
-        actSeaCoun.includes(c.name)
-      );
-      return {
-        ...state,
-        allCountries: countriesFilterSeason,
-      };
+      case FILTER_COUNTRIES_BY_SEASON:
+        const filterCountriesBySeason = (countries, activities, season) => {
+          let countriesWithActivities = activities
+            .filter((activity) => activity.season === season)
+            .map((activity) => activity.Countries)
+            .reduce((acc, val) => acc.concat(val), []) 
+            .map((country) => country.id);
+          return countries.filter((country) =>
+            countriesWithActivities.includes(country.id)
+          );
+        };
+  
+        let countFil = filterCountriesBySeason(
+          state.countries,
+          state.activities,
+          action.payload
+        );
+  
+        return {
+          ...state,
+          allCountries: countFil,
+        };
     default:
       return state;
   }
