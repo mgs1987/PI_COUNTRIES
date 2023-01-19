@@ -101,4 +101,5 @@ router.get("/activities", async (req, res, next) => {
     }
   });
 
+  
 module.exports = router;

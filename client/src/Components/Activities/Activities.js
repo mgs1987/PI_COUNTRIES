@@ -83,6 +83,7 @@ function handleSubmit(e){
   };
   
   dispatch(addActivity(input))
+  e.target.reset();
   setInput({
     countries:"",
     name:"",
@@ -95,7 +96,10 @@ function handleSubmit(e){
   return (
     <div className="body">
       <br></br>
-      <Link to="/home" className="backhome"> Back to Home </Link>
+      <div className="back">
+        <Link to="/home" className="backhome"> Back to Home </Link>
+      </div>
+      
       <h2 className="h2"> Want to ADD any activity? </h2>
       <form onSubmit={(e)=>handleSubmit(e)}>
       <div className="select">

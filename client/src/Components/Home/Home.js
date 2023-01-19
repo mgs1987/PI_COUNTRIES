@@ -23,7 +23,7 @@ function Home() {
     indexOfFirstCountry,
     indexOfLastCountry
   );
-
+  
   const page = (number) => {
     setCurrentPage(number);
     if (number === 1) {
@@ -55,6 +55,7 @@ function Home() {
           );
         })}
       <Pages
+        allCountries={allCountries.length}
         page={page}
         setCountriesPerPage={setCountriesPerPage}
         countriesPerPage={countriesPerPage}

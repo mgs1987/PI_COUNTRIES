@@ -6,7 +6,8 @@ export default function pages({
   countriesPerPage,
   setCurrentPage,
   currentPage,
-  page
+  page,
+  allCountries
 }) {
 
   function handlePrev() {
@@ -15,8 +16,7 @@ export default function pages({
       setCountriesPerPage(9)
       setCurrentPage(1)
       return;
-    }
-   
+    }  
   };
 
   function handleNext() {
@@ -28,18 +28,21 @@ export default function pages({
       setCurrentPage(25)
       return; 
     }
-    
-
   };
  
-  let pages = [1,2,3,4,5]
+  const pageNumbers =[];
+
+  for(let i =1; i<= Math.ceil(allCountries/countriesPerPage) && i < 6; i++){
+    pageNumbers.push(i)
+   }
+
 
   return (
     <div className="container d-flex justify-content-center gap-5 my-5">
       <button className="btn" onClick={() => handlePrev()}>
         Prev
       </button>
-      {pages.map((number)=>{
+      {pageNumbers.map((number)=>{
         return <button className="btn"onClick={()=>page(number)}>{number}</button>
       })}
       <button className="btn" onClick={() => handleNext()}>

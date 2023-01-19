@@ -106,8 +106,8 @@ Se debe desarrollar una aplicación de React/Redux que contenga las siguientes p
 
 __Pagina inicial__: deben armar una landing page con
 
-- [ ] Alguna imagen de fondo representativa al proyecto
-- [ ] Botón para ingresar al home (`Ruta principal`)
+- [x] Alguna imagen de fondo representativa al proyecto
+- [x] Botón para ingresar al home (`Ruta principal`)
 
 __Ruta principal__: debe contener
 
@@ -116,29 +116,29 @@ __Ruta principal__: debe contener
   - Imagen de la bandera
   - Nombre
   - Continente
-- [ ] Botones/Opciones para filtrar por continente y por tipo de actividad turística
+- [x] Botones/Opciones para filtrar por continente y por tipo de actividad turística
 - [x] Botones/Opciones para ordenar tanto ascendentemente como descendentemente los países por orden alfabético y por cantidad de población
 - [ ] Paginado para ir buscando y mostrando los siguientes paises, 10 paises por pagina, mostrando los primeros 9 en la primer pagina.
 
 __Ruta de detalle de país__: debe contener
 
 - [x ] Los campos mostrados en la ruta principal para cada país (imagen de la bandera, nombre, código de país de 3 letras y continente)
-- [ x] Código de país de 3 letras (id)
-- [ x] Capital
-- [x ] Subregión
-- [x ] Área (Mostrarla en km2 o millones de km2)
-- [ x] Población
-- [x ] Actividades turísticas con toda su información asociada
+- [x] Código de país de 3 letras (id)
+- [x] Capital
+- [x] Subregión
+- [x] Área (Mostrarla en km2 o millones de km2)
+- [x] Población
+- [x] Actividades turísticas con toda su información asociada
 
 __Ruta de creación de actividad turística__: debe contener
 
-- [ ] Un formulario __controlado con JavaScript__ con los siguientes campos:
+- [x] Un formulario __controlado con JavaScript__ con los siguientes campos:
   - Nombre
   - Dificultad
   - Duración
   - Temporada
-- [ ] Posibilidad de seleccionar/agregar varios países en simultáneo
-- [ ] Botón/Opción para crear una nueva actividad turística
+- [x] Posibilidad de seleccionar/agregar varios países en simultáneo
+- [x] Botón/Opción para crear una nueva actividad turística
 
 > Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre de la actividad no pueda contener símbolos, que la duración no pueda exceder determinado valor, etc.
 
@@ -146,7 +146,7 @@ __Ruta de creación de actividad turística__: debe contener
 
 El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterísco deben ser obligatorias):
 
-- [ ] País con las siguientes propiedades:
+- [x] País con las siguientes propiedades:
   - ID (Código de 3 letras) *
   - Nombre *
   - Imagen de la bandera *
@@ -155,7 +155,7 @@ El modelo de la base de datos deberá tener las siguientes entidades (Aquellas p
   - Subregión
   - Área
   - Población
-- [ ] Actividad Turística con las siguientes propiedades:
+- [x] Actividad Turística con las siguientes propiedades:
   - ID
   - Nombre
   - Dificultad (Entre 1 y 5)
@@ -170,17 +170,17 @@ Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
 
 __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y paginados brindados por la API externa, todas estas funcionalidades tienen que implementarlas ustedes.
 
-- [ ] __GET /countries__:
+- [x] __GET /countries__:
   - En una primera instancia deberán traer todos los países desde restcountries y guardarlos en su propia base de datos y luego ya utilizarlos desde allí (Debe retonar sólo los datos necesarios para la ruta principal)
   - Obtener un listado de los paises.
-- [ ] __GET /countries/{idPais}__: 
+- [x] __GET /countries/{idPais}__: 
   - Obtener el detalle de un país en particular
   - Debe traer solo los datos pedidos en la ruta de detalle de país
   - Incluir los datos de las actividades turísticas correspondientes
-- [ ] __GET /countries?name="..."__:
+- [x] __GET /countries?name="..."__:
   - Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
   - Si no existe ningún país mostrar un mensaje adecuado
-- [ ] __POST /activities__:
+- [x] __POST /activities__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
   - Crea una actividad turística en la base de datos, relacionada con los países correspondientes
 
