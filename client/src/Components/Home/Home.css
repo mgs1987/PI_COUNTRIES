@@ -1,6 +1,6 @@
 .main-container {
     background-image: url("../../images/background.jpeg");
-    background-position: center center;
+    background-repeat: repeat-y;
 }
 
 .create-activity {
@@ -12,4 +12,16 @@
 .searchbar {
     display: flex;
     align-items: flex-end;
+}
+.line {
+    
+    border: 1px solid palevioletred;
+    width: 50%;
+}
+.space-container{
+    border: 3px solid rgb(199, 34, 89);
+    width:100%;
+}
+.space-container-footer{
+    border: 3px solid palevioletred;
 }

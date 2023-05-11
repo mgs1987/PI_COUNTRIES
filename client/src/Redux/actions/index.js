@@ -1,11 +1,3 @@
-import axios from "axios";
-import {
-  GET_ALL_COUNTRIES_URL,
-  GET_COUNTRY_BY_NAME_URL,
-  GET_COUNTRY_DETAIL,
-  GET_ALL_ACTIVITIES,
-} from "../../Static/entorno";
-
 import {
   GET_COUNTRIES,
   GET_COUNTRY_BY_NAME,
@@ -19,10 +11,17 @@ import {
   GET_ACTIVITIES_FILTERED,
   FILTER_COUNTRIES_BY_SEASON,
 } from "../action-types/index.js";
+import axios from "axios";
+const {
+  REACT_APP_GET_ALL_COUNTRIES_URL,
+  REACT_APP_GET_COUNTRY_BY_NAME_URL,
+  REACT_APP_GET_COUNTRY_DETAIL,
+  REACT_APP_GET_ALL_ACTIVITIES,
+} = process.env;
 
 export function getCountries() {
   return async function (dispatch) {
-    let response = await axios.get(GET_ALL_COUNTRIES_URL);
+    let response = await axios.get(REACT_APP_GET_ALL_COUNTRIES_URL);
     return dispatch({
       type: GET_COUNTRIES,
       payload: response.data,
@@ -33,7 +32,7 @@ export function getCountries() {
 export function getCountryByName(name) {
   return async function (dispatch) {
     try {
-      const nombre = await axios.get(GET_COUNTRY_BY_NAME_URL + name);
+      const nombre = await axios.get(REACT_APP_GET_COUNTRY_BY_NAME_URL + name);
       if (nombre.status === 200 || nombre.status === 304) {
         return dispatch({ type: GET_COUNTRY_BY_NAME, payload: nombre.data });
       }
@@ -46,7 +45,7 @@ export function getCountryByName(name) {
 export function getCountryDetailById(id) {
   return async function (dispatch) {
     return await axios
-      .get(GET_COUNTRY_DETAIL + id)
+      .get(REACT_APP_GET_COUNTRY_DETAIL + id)
       .then((resp) => resp.data)
       .then((resp) => {
         dispatch({ type: GET_COUNTRY_DETAIL_BY_ID, payload: resp });
@@ -94,7 +93,7 @@ export function orderPopulation(payload) {
 export function addActivity(data) {
   return async function (dispatch) {
     return await axios
-      .post(GET_ALL_ACTIVITIES, data)
+      .post(REACT_APP_GET_ALL_ACTIVITIES, data)
       .then((response) => response.data)
       .then((response) => {
         dispatch({ type: ADD_ACTIVITY, payload: response });
@@ -109,7 +108,7 @@ export function addActivity(data) {
 
 export function getActivities() {
   return async function (dispatch) {
-    let response = await axios.get(GET_ALL_ACTIVITIES);
+    let response = await axios.get(REACT_APP_GET_ALL_ACTIVITIES);
     return dispatch({ type: GET_ACTIVITIES, payload: response.data });
   };
 }
@@ -125,6 +124,7 @@ export function filterActivitiesBySeason(payload) {
 }
 
 export function getActivitiesFiltered(payload) {
+  console.log(payload);
   return function (dispatch) {
     try {
       dispatch({ type: GET_ACTIVITIES_FILTERED, payload });

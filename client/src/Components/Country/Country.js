@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../Country/Country.css";
+import "./Country.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getCountryDetailById,
@@ -7,8 +7,9 @@ import {
 } from "../../Redux/actions/index";
 import { Link, useParams } from "react-router-dom";
 import CardActivity from "../CardActivity/CardActivity";
+import { FaHome } from "react-icons/fa";
 
-function Country(props) {
+export const Country = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -22,36 +23,45 @@ function Country(props) {
 
   return (
     <div className="main-cointainer">
-      <br></br>
+      <div className="space-container"></div>
       <div className="body">
-        <div className="filterseason">
+        <div className="back-button-container">
           <Link to="/home">
-            <button className="backbtn">Back to Home</button>
+            <button className="backbtn">
+              <FaHome />
+            </button>
           </Link>
         </div>
-        <h1 className="utherinfoh1"> About... </h1>
+        <h1 className="furtherinfoh1"> About {country.name} </h1>
 
-        <h1> {country.name} </h1>
         <div>
           <img
             className="flagimage"
             src={country.flag_image}
             alt={country.name}
           />
-          <h3> Three letter country code: "{country.id}"</h3>
-          <h2 className="futherinfo">Capital: {country.capital}</h2>
-          <h2 className="futherinfo">Subregion: {country.subregion}</h2>
-          <h2 className="futherinfo">Area: {country.area} km2 </h2>
+          <h3>
+            <span>Three letter country code:</span> "{country.id}"
+          </h3>
           <h2 className="futherinfo">
-            Population: {country.population} residents
+            <span>Capital:</span> {country.capital}
+          </h2>
+          <h2 className="futherinfo">
+            <span>Subregion:</span> {country.subregion}
+          </h2>
+          <h2 className="futherinfo">
+            <span>Area:</span> {country.area} km2{" "}
+          </h2>
+          <h2 className="futherinfo">
+            <span>Population:</span>
+            {country.population} residents
           </h2>
         </div>
         <br></br>
         <br></br>
-        <div className="turisticAct">
-          <h2> Turistic Activities Availables </h2>
-        </div>
-
+        <h2 className="title-activities">
+          <span>Featured Activities</span>
+        </h2>
         {activitiesFilter &&
           activitiesFilter.map((el) => {
             return (
@@ -66,8 +76,6 @@ function Country(props) {
       </div>
     </div>
   );
-}
-
+};
 
 export default Country;
-

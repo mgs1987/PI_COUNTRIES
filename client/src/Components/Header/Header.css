@@ -1,48 +1,51 @@
+.search-bar {
+  background-image:url("../../images/background.jpeg"); ;
+}
 .h1 {
+    display: flex;
     text-align: center;
+    justify-content: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: palevioletred;
     margin: 0%;
-    padding: 3%;
-    box-sizing: border-box;
-
+    padding: 2%;
+    
 }
 
 .menu {
   display: flex;
   background-color: #ffdab98c;
-  
+  height: 90px;
+  align-items: center;
 }
 
 .searchnav {
-    padding: 7px;
-    margin-right: 50px;
-    margin-left: auto;
+    padding: 5px;
+    margin-left:40px;
 }
   
 .create-act {
+    display: flex;
     background-color: palevioletred;
     color: white;
     font-size: 19px;
     border: none;
     cursor: pointer;
     align-self: center;
-    padding:16px;
+    padding:8px;
     text-decoration: none;
     border-color: palevioletred;
     border-radius: 6px;
-    margin-right: 1px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
   .create-act :hover {
        background-color: rgb(212, 67, 115);
-       padding: 16px;
-
   }
 
 .create-act1 {
-  background-color: palevioletred;
+  
+    background-color: palevioletred;
     color: white;
     font-size: 19px;
     border: none;
@@ -69,7 +72,7 @@
     border-radius: 6px;
     color:white;
     background-color: palevioletred;
-    padding: 10px;
+    padding: 8px;
     text-decoration: none;
     cursor: pointer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -80,16 +83,18 @@
 
 /* Style The Dropdown Button */
 .dropbtn {
+  display: flex;
+  align-self: center;
   background-color: palevioletred;
   color: white;
-  padding: 16px;
-  font-size: 19px;
+  padding: 17px;
+  font-size:19px;
   border: none;
   cursor: pointer;
   border-color: palevioletred;
   border-radius: 6px;
-  padding-left:31px;
-  padding-right:31px;
+  /* padding-left:31px;
+  padding-right:31px; */
   margin-left:87px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

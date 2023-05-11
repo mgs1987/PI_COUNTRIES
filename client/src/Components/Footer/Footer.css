@@ -2,4 +2,19 @@
     background-color: peachpuff;
     opacity: 0.6;
     color: rgb(231, 13, 86);
+    height: 180px; 
+}
+
+.footer-container{
+    display: flex;
+    justify-content: center;
+
+}
+.profile-container{
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    padding: 20px;
 }

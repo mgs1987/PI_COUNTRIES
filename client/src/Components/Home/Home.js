@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import "./Home.css";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import Pages from "../../Pages/Pages.js";
-
 import { getCountries, getActivities } from "../../Redux/actions/index";
-
-function Home() {
+import { Outlet } from "react-router-dom";
+export const Home = () => {
   const dispatch = useDispatch();
 
   const allCountries = useSelector((state) => state.allCountries);
@@ -23,7 +20,7 @@ function Home() {
     indexOfFirstCountry,
     indexOfLastCountry
   );
-  
+
   const page = (number) => {
     setCurrentPage(number);
     if (number === 1) {
@@ -40,9 +37,9 @@ function Home() {
 
   return (
     <div className="main-container">
-      <Header setCurrentPage={setCurrentPage} />
-      <br></br>
-      <br></br>
+      <Outlet />
+      <div className="space-container"></div>
+      <br />
       {currentCountries &&
         currentCountries.map((pais) => {
           return (
@@ -62,9 +59,8 @@ function Home() {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-      <Footer />
     </div>
   );
-}
+};
 
 export default Home;
