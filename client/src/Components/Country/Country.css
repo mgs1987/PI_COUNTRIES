@@ -1,6 +1,7 @@
 .main-cointainer { 
     background-image: url("../../images/background.jpeg");
-    background-position:100%;
+    background-repeat: repeat;
+    
 } 
 .body {
    color: rgb(209, 86, 127);
@@ -75,7 +76,22 @@
 }
 
 .title-activities{
+    margin:1rem;
+}
+.cards-act{
     display: flex;
-    justify-content: flex-start;
-    margin:3rem;
+    flex-direction: row;
+}
+
+.no-activities{
+    border: 1px solid palevioletred;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    font-style: italic;
+    font-size: small;
+    margin: 1rem;
+
 }

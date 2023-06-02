@@ -1,10 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Activities.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addActivity, getCountries } from "../../Redux/actions";
+import { getCountries } from "../../Redux/actions";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import { useForm } from "../Hook/useForm";
+
+const initialForm = {
+  countries: [],
+  name: "",
+  difficulty: 0,
+  duration: 0,
+  season: "",
+};
+const validationsForm = (form) => {
+  let errors = {};
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
+  let regexDuration = /^[1-9][0-9]*$/;
+
+  if (!form.countries.length) {
+    errors.countries = "You must select a Country";
+  }
+  if (!form.name.trim()) {
+    errors.name = "You must write an Activity for the country you select";
+  } else if (!regexName.test(form.name.trim())) {
+    errors.name = "the field only accept letters and white spaces";
+  }
+  if (form.difficulty === 0) {
+    errors.difficulty = "You must select a difficulty";
+  }
+
+  if (!form.duration) {
+    errors.duration = "You must write duration of the activity";
+  } else if (!regexDuration.test(form.duration)) {
+    errors.duration = "the field only accept positives numbers";
+  }
+  if (!form.season) {
+    errors.season = "You must select a season";
+  }
+  return errors;
+};
+
 export const Activities = () => {
+  const {
+    form,
+    errors,
+    // loading,
+    // response,
+    handleBlur,
+    handleChange,
+    handleAddCountry,
+    handleDifficulty,
+    handleSeason,
+    handleSubmit,
+  } = useForm(initialForm, validationsForm);
   const dispatch = useDispatch();
 
   const allCountries = useSelector((state) => state.allCountries);
@@ -12,94 +62,7 @@ export const Activities = () => {
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
-
-  const [input, setInput] = useState({
-    countries: [],
-    name: "",
-    difficulty: "",
-    duration: 0,
-    season: "",
-    errors: {
-      name: "",
-      duration: "",
-      season: "",
-      countries: "",
-    },
-  });
-
-  function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function handleAddCountry(e) {
-    setInput({
-      ...input,
-      countries: [...input.countries, e.target.value],
-    });
-  }
-
-  function handleDifficulty(e) {
-    e.preventDefault();
-    setInput({
-      ...input,
-      difficulty: e.target.value,
-    });
-  }
-  function handleSeason(e) {
-    e.preventDefault();
-    setInput({
-      ...input,
-      season: e.target.value,
-    });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const { value, name } = e.target;
-    let errors = useState.errors;
-    //console.log(input)
-
-    switch (name) {
-      case "name":
-        var nameValidate = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
-        errors.name =
-          nameValidate.test(value) && value.length < 3
-            ? "Activity name must be letters and have as minimum 3 characters"
-            : "";
-        break;
-      case "season":
-        errors.season = value.length === 0 ? "Must have a season" : "";
-        break;
-      case "duration":
-        var durationValidate = /^[0-9]+$/;
-        errors.difficulty =
-          value.length < 4 && durationValidate.test(value)
-            ? "Duration must be a number"
-            : "";
-        break;
-      case "countries":
-        errors.countries =
-          value.length === 0 ? "Must have at least one country" : "";
-        break;
-      default:
-        break;
-    }
-
-    dispatch(addActivity(input));
-    e.target.reset();
-    setInput({
-      countries: "",
-      name: "",
-      difficulty: "",
-      duration: "",
-      season: "",
-    });
-  }
-
+  console.log(form.difficulty);
   return (
     <div className="main-container">
       <div className="space-container"></div>
@@ -111,43 +74,57 @@ export const Activities = () => {
         </div>
       </div>
       <div className="title-activity">
-        <h2> Want to ADD any activity? </h2>
+        <h2> Add an activity </h2>
       </div>
 
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <div className="select">
           <h4 className="h4"> Select countries :</h4>
           <select
             name="countries"
+            value={form.countries.name}
             className="select-countries"
-            onChange={(e) => handleAddCountry(e)}
+            onBlur={handleBlur}
+            onChange={handleAddCountry}
             multiple
+            required
           >
+            <option value=""></option>
             {allCountries.map((pais) => (
               <option key={pais.id} value={pais.name}>
                 {pais.name}
               </option>
             ))}
           </select>
+          {errors.countries && <h5>{errors.countries}</h5>}
         </div>
-        <br></br>
+        <br />
         <h4 className="h4"> Activity name </h4>
         <input
+          className="input"
           type="text"
           name="name"
           placeholder="Write here"
-          onChange={(e) => handleChange(e)}
-          className="input"
-          value={input.value}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={form.name}
+          required
         ></input>
+        {errors.name && <h5>{errors.name}</h5>}
         <br></br>
-        <h4 htmlFor="difficulty" className="h4">
+        <label htmlFor="difficulty" className="h4">
           Difficulty
-        </h4>
-        <select className="select-season" onChange={(e) => handleDifficulty(e)}>
-          <option key="0" value="0">
-            Select number from 1 to 5
-          </option>
+        </label>
+        <select
+          id="difficulty"
+          name="difficulty"
+          value={form.difficulty}
+          onChange={handleDifficulty}
+          onBlur={handleBlur}
+          className="select-season"
+          required
+        >
+          <option value=""></option>
           <option key="1" value="1">
             1- Begginer
           </option>
@@ -164,35 +141,49 @@ export const Activities = () => {
             5-Professional
           </option>
         </select>
-        <br></br>
+        {errors.difficulty && <h5>{errors.difficulty}</h5>}
+        <br />
         <h4 className="h4"> Duration </h4>
         <input
+          className="input"
           type="number"
           name="duration"
-          placeholder="Quantity of minutes..."
-          onChange={(e) => handleChange(e)}
-          className="input"
-          value={input.value}
+          placeholder="Minutes..."
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={form.duration}
+          required
         ></input>
-        <br></br>
-        <h4 className="h4"> Season </h4>
+        <label>minutes</label>
+        {errors.duration && <h5>{errors.duration}</h5>}
+        <br />
+        <label htmlFor="season" className="h4">
+          Season
+        </label>
         <select
-          value={useState.season}
-          onChange={(e) => handleSeason(e)}
+          id="season"
+          value={form.season}
+          name="season"
+          onChange={handleSeason}
+          onBlur={handleBlur}
           className="select-season"
+          required
         >
-          <option value="0">Select season</option>
+          <option value=""></option>
           <option value="Winter"> Winter </option>
           <option value="Spring"> Spring </option>
           <option value="Autumn"> Autumn </option>
           <option value="Summer"> Summer </option>
         </select>
-        <br></br>
-        <br></br>
-        <br></br>
-        <button type="submit" className="buttonAdd">
-          Add Turistic Activity
-        </button>
+        {errors.season && <h5>{errors.season}</h5>}
+        <br />
+        <br />
+        <br />
+        <input
+          type="submit"
+          className="buttonAdd"
+          value="Add Turistic Activity"
+        />
       </form>
       <br />
     </div>

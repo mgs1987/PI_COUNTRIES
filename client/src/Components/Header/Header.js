@@ -22,8 +22,9 @@ export const Header = ({ setCurrentPage }) => {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    //setCurrentPage(1);
+
     dispatch(getCountryByName(search));
+    e.target.reset();
   }
   function handleFilterContinent(e) {
     setSelect(e.target.value);
@@ -128,7 +129,7 @@ export const Header = ({ setCurrentPage }) => {
               <input
                 className="input"
                 type="text"
-                placeholder="Write a country name"
+                placeholder="Enter a country "
                 onChange={(e) => handleChange(e)}
               ></input>
               <button type="submit" className="search-btn">

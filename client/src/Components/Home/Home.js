@@ -44,6 +44,7 @@ export const Home = () => {
         currentCountries.map((pais) => {
           return (
             <Card
+              key={pais.id}
               id={pais.id}
               name={pais.name}
               continent={pais.continent}

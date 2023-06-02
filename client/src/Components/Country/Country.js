@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./Country.css";
+import "./country.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getCountryDetailById,
@@ -15,7 +15,6 @@ export const Country = (props) => {
 
   const country = useSelector((state) => state.countryDetail);
   const activitiesFilter = useSelector((state) => state.activitiesFiltered);
-
   useEffect(() => {
     dispatch(getCountryDetailById(id));
     dispatch(getActivitiesFiltered(id));
@@ -32,7 +31,7 @@ export const Country = (props) => {
             </button>
           </Link>
         </div>
-        <h1 className="furtherinfoh1"> About {country.name} </h1>
+        <h1 className="furtherinfoh1"> {country.name} </h1>
 
         <div>
           <img
@@ -50,29 +49,41 @@ export const Country = (props) => {
             <span>Subregion:</span> {country.subregion}
           </h2>
           <h2 className="futherinfo">
-            <span>Area:</span> {country.area} km2{" "}
+            <span>Area:</span> {country.area} km2
           </h2>
           <h2 className="futherinfo">
             <span>Population:</span>
             {country.population} residents
           </h2>
         </div>
-        <br></br>
-        <br></br>
+
         <h2 className="title-activities">
-          <span>Featured Activities</span>
+          <span>Featured Activities: </span>
         </h2>
-        {activitiesFilter &&
-          activitiesFilter.map((el) => {
-            return (
-              <CardActivity
-                name={el.name}
-                difficulty={el.difficulty}
-                duration={el.duration}
-                season={el.season}
-              />
-            );
-          })}
+
+        <div className="cards-act">
+          {activitiesFilter && activitiesFilter.length > 0 ? (
+            activitiesFilter.map((el) => {
+              return (
+                <CardActivity
+                  key={el.name}
+                  name={el.name}
+                  difficulty={el.difficulty}
+                  duration={el.duration}
+                  season={el.season}
+                />
+              );
+            })
+          ) : (
+            <div className="no-activities">
+              <h2>No activities availables</h2>
+
+              <Link to="/activities">
+                <button className="backbtn"> Add activity ?</button>
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
