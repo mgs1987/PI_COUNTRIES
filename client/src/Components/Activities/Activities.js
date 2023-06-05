@@ -62,7 +62,7 @@ export const Activities = () => {
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
-  console.log(form.difficulty);
+
   return (
     <div className="main-container">
       <div className="space-container"></div>
@@ -74,12 +74,13 @@ export const Activities = () => {
         </div>
       </div>
       <div className="title-activity">
-        <h2> Add an activity </h2>
+        <h2> Add Turistic Activities </h2>
       </div>
 
       <form onSubmit={handleSubmit}>
         <div className="select">
-          <h4 className="h4"> Select countries :</h4>
+          <h4 className="h4"> Select countries </h4>
+          <h6>You can select one or more countries</h6>
           <select
             name="countries"
             value={form.countries.name}
@@ -89,7 +90,6 @@ export const Activities = () => {
             multiple
             required
           >
-            <option value=""></option>
             {allCountries.map((pais) => (
               <option key={pais.id} value={pais.name}>
                 {pais.name}
@@ -97,94 +97,97 @@ export const Activities = () => {
             ))}
           </select>
           {errors.countries && <h5>{errors.countries}</h5>}
+
+          <br />
+          <h4 className="h4"> Activity name </h4>
+          <input
+            className="input"
+            type="text"
+            name="name"
+            placeholder="Write here"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={form.name}
+            required
+          ></input>
+          {errors.name && <h5>{errors.name}</h5>}
+          <br></br>
+          <label htmlFor="difficulty" className="h4">
+            Difficulty
+          </label>
+          <br />
+          <select
+            id="difficulty"
+            name="difficulty"
+            value={form.difficulty}
+            onChange={handleDifficulty}
+            onBlur={handleBlur}
+            className="input"
+            required
+          >
+            <option value=""></option>
+            <option key="1" value="1">
+              1- Begginer
+            </option>
+            <option key="2" value="2">
+              2-Low
+            </option>
+            <option key="3" value="3">
+              3-Medium
+            </option>
+            <option key="4" value="4">
+              4-High
+            </option>
+            <option key="5" value="5">
+              5-Professional
+            </option>
+          </select>
+          {errors.difficulty && <h5>{errors.difficulty}</h5>}
+          <br />
+          <h4 className="h4"> Duration </h4>
+          <input
+            className="input-duration"
+            type="number"
+            name="duration"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={form.duration}
+            required
+          ></input>
+          <label className="minutes">minutes</label>
+          {errors.duration && <h5>{errors.duration}</h5>}
+          <br />
+          <label htmlFor="season" className="h4">
+            Season
+          </label>
+          <br />
+          <select
+            id="season"
+            value={form.season}
+            name="season"
+            onChange={handleSeason}
+            onBlur={handleBlur}
+            className="input"
+            required
+          >
+            <option value=""></option>
+            <option value="Winter"> Winter </option>
+            <option value="Spring"> Spring </option>
+            <option value="Autumn"> Autumn </option>
+            <option value="Summer"> Summer </option>
+          </select>
+          {errors.season && <h5>{errors.season}</h5>}
+          <br />
+          <br />
+          <br />
+          <input
+            type="submit"
+            className="button-add"
+            value="Add Turistic Activity"
+          />
         </div>
-        <br />
-        <h4 className="h4"> Activity name </h4>
-        <input
-          className="input"
-          type="text"
-          name="name"
-          placeholder="Write here"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={form.name}
-          required
-        ></input>
-        {errors.name && <h5>{errors.name}</h5>}
-        <br></br>
-        <label htmlFor="difficulty" className="h4">
-          Difficulty
-        </label>
-        <select
-          id="difficulty"
-          name="difficulty"
-          value={form.difficulty}
-          onChange={handleDifficulty}
-          onBlur={handleBlur}
-          className="select-season"
-          required
-        >
-          <option value=""></option>
-          <option key="1" value="1">
-            1- Begginer
-          </option>
-          <option key="2" value="2">
-            2-Low
-          </option>
-          <option key="3" value="3">
-            3-Medium
-          </option>
-          <option key="4" value="4">
-            4-High
-          </option>
-          <option key="5" value="5">
-            5-Professional
-          </option>
-        </select>
-        {errors.difficulty && <h5>{errors.difficulty}</h5>}
-        <br />
-        <h4 className="h4"> Duration </h4>
-        <input
-          className="input"
-          type="number"
-          name="duration"
-          placeholder="Minutes..."
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={form.duration}
-          required
-        ></input>
-        <label>minutes</label>
-        {errors.duration && <h5>{errors.duration}</h5>}
-        <br />
-        <label htmlFor="season" className="h4">
-          Season
-        </label>
-        <select
-          id="season"
-          value={form.season}
-          name="season"
-          onChange={handleSeason}
-          onBlur={handleBlur}
-          className="select-season"
-          required
-        >
-          <option value=""></option>
-          <option value="Winter"> Winter </option>
-          <option value="Spring"> Spring </option>
-          <option value="Autumn"> Autumn </option>
-          <option value="Summer"> Summer </option>
-        </select>
-        {errors.season && <h5>{errors.season}</h5>}
-        <br />
-        <br />
-        <br />
-        <input
-          type="submit"
-          className="buttonAdd"
-          value="Add Turistic Activity"
-        />
       </form>
+
       <br />
     </div>
   );
