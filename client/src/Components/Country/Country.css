@@ -1,6 +1,7 @@
 .main-cointainer { 
     background-image: url("../../images/background.jpeg");
-    background-repeat: repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
     
 } 
 .body {
@@ -89,7 +90,6 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     font-style: italic;
     font-size: small;
     margin: 1rem;

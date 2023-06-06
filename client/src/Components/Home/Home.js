@@ -38,7 +38,7 @@ export const Home = () => {
   return (
     <div className="main-container">
       <Outlet />
-      <div className="space-container"></div>
+      <hr className="space-container" />
       <br />
       {currentCountries &&
         currentCountries.map((pais) => {

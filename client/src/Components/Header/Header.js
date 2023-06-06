@@ -22,7 +22,6 @@ export const Header = ({ setCurrentPage }) => {
   }
   function handleSubmit(e) {
     e.preventDefault();
-
     dispatch(getCountryByName(search));
     e.target.reset();
   }
@@ -77,7 +76,7 @@ export const Header = ({ setCurrentPage }) => {
                   onChange={(e) => handleFilterContinent(e)}
                   className="continent-detail"
                 >
-                  <option value=""></option>
+                  <option defaultValue>Select a country</option>
                   <option value="North America">North America</option>
                   <option value="South America">South America</option>
                   <option value="Asia">Asia</option>
@@ -92,7 +91,7 @@ export const Header = ({ setCurrentPage }) => {
                   className="secondselect"
                   onChange={(e) => handleFilterBySeason(e)}
                 >
-                  <option value=""></option>
+                  <option value="">Select a season</option>
                   <option value="Winter">Winter</option>
                   <option value="Spring">Spring</option>
                   <option value="Summer">Summer</option>
@@ -107,7 +106,7 @@ export const Header = ({ setCurrentPage }) => {
               <ul className="continent-list">
                 <li className="create-act">Alphabetic</li>
                 <select onChange={(e) => handleOrderAlphabetic(e)}>
-                  <option></option>
+                  <option>Select an order</option>
                   <option className="select-continent" value={"A-Z"}>
                     A-Z
                   </option>
@@ -117,7 +116,7 @@ export const Header = ({ setCurrentPage }) => {
                 </select>
                 <li className="create-act">Population</li>
                 <select onChange={(e) => handleOrderPopulation(e)}>
-                  <option></option>
+                  <option>Select an order</option>
                   <option value="Descending order"> Descending order </option>
                   <option value="Ascending order"> Ascending order</option>
                 </select>
@@ -129,7 +128,7 @@ export const Header = ({ setCurrentPage }) => {
               <input
                 className="input"
                 type="text"
-                placeholder="Enter a country "
+                placeholder="Write a country "
                 onChange={(e) => handleChange(e)}
               ></input>
               <button type="submit" className="search-btn">

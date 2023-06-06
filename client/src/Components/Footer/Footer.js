@@ -8,7 +8,7 @@ export const Footer = () => {
     <div className="footer">
       <div className="space-container"></div>
       <div className="footer-container">
-        <h5> First Individual Proyect- January 2022 </h5>
+        <h5> First Individual Proyect- January 2023 </h5>
       </div>
       <div className="profile-container">
         <h3>Contact me : </h3>
