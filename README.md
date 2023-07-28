@@ -12,17 +12,17 @@
 </ul>
 
 
-
 <h3>Tecnologies</h3>
 <div>
-  <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-react-1-282599.png?f=avif&w=256" />
-  <img height="40" backgroundColor="white" src="https://cdn.iconscout.com/icon/free/png-512/free-express-9-1175170.png?f=avif&w=256" />
-  <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-postgresql-226047.png?f=avif&w=256" />
-  <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-css3-11-1175239.png?f=avif&w=256" />
   <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-javascript-1-225993.png?f=avif&w=256" />
+  <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-react-1-282599.png?f=avif&w=256" />
   <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-redux-283024.png?f=avif&w=256" />
+  <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-html5-40-1175193.png?f=avif&w=256" />
+  <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-css3-11-1175239.png?f=avif&w=256" />
+  <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-postgresql-226047.png?f=avif&w=256" />
   <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-sequelize-2-1175003.png?f=avif&w=256" />
   <img height="40" src="https://cdn.iconscout.com/icon/free/png-512/free-node-js-3-1174937.png?f=avif&w=256" />
+  <img height="40" backgroundcolor="white" src="https://cdn.iconscout.com/icon/free/png-512/free-express-9-1175170.png?f=avif&w=256" />
   
 </div>
 
