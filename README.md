@@ -37,7 +37,7 @@
  DB_PASSWORD=passwordDePostgres
  DB_HOST=localhost
 
-Replace `usuariodepostgres` y `passwordDePostgres` with your own credentials so that you can connect to postres.
+Replace `usuariodepostgres` y `passwordDePostgres` with your own credentials so that you can connect to postgres.
 
 <h3>Installation</h3>
 <h4>Use NPM package to install (Remember to use this command inside ./client and inside ./api </h4> 
