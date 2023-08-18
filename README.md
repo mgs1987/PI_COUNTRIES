@@ -3,7 +3,7 @@
 <h2>Individual Project - Henry Countries</h2>
 
 <h3>Projects Objectives</h3>
-  <p>Create a web application, where you can find short information about all the countries in the world, using an external api (https://restcountries.com/v3/all)</p>
+  <p>This is a web application, where you can find short information about all the countries in the world, using an external api (https://restcountries.com/v3/all)</p>
 <ul>
 <li>Create activities per country</li>
 <li>Search countries</li>
@@ -40,7 +40,7 @@
 Replace `usuariodepostgres` y `passwordDePostgres` with your own credentials so that you can connect to postgres.
 
 <h3>Installation</h3>
-<h4>Use NPM package to install (Remember to use this command inside ./client and inside ./api </h4> 
+<h4>Use NPM package to install (Remember to use this command inside ./client and inside ./api) </h4> 
 <h5>npm install</h5>
 
 <h3>Execute locally</h3>
